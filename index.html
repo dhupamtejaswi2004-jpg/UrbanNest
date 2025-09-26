@@ -3,147 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Books Stores</title>
+<title>Urban Nest Books - Home</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    margin: 0;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .container {
-    background: white;
-    border-radius: 10px;
-    padding: 30px;
-    width: 800px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  }
-  h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  .book-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-  }
-  .book-card {
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  .book-card:hover {
-    transform: translateY(-5px);
-  }
-  .book-card img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-  }
-  .book-info {
-    padding: 15px;
-    background: #fafafa;
-  }
-  .book-info h3 {
-    font-size: 18px;
-    margin: 0 0 10px;
-    color: #333;
-  }
-  .book-info p {
-    font-size: 14px;
-    margin: 2px 0;
-    color: #666;
-  }
-  .specs {
-    margin-top: 20px;
-    padding: 20px;
-    background: #e9f1ff;
-    border-radius: 8px;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.6s ease;
-  }
-  .specs.active {
-    opacity: 1;
-    max-height: 500px;
-    animation: fadeSlideIn 0.6s forwards;
-  }
-  @keyframes fadeSlideIn {
-    0% {opacity: 0; transform: translateY(20px);}
-    100% {opacity: 1; transform: translateY(0);}
-  }
+  body {margin:0;font-family:Arial,sans-serif;background:#f0f0f0;}
+  .top-bar {display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+  .top-bar .nav-links a {margin-left:15px;text-decoration:none;color:#007bff;font-weight:bold;}
+  .top-bar button {margin-left:15px;padding:8px 16px;border:none;background:#007bff;color:white;border-radius:5px;cursor:pointer;}
+  .header {position:relative;text-align:center;color:white;}
+  .header img {width:100%;height:250px;object-fit:cover;filter:brightness(60%);}
+  .header h1 {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;margin:0;}
+  .main {display:flex;padding:20px 30px;flex-wrap:wrap;}
+  .sidebar {width:220px;margin-right:30px;flex-shrink:0;}
+  .sidebar h3 {margin-top:0;}
+  .categories, .wishlist, .price-range {background:#fff;padding:15px;margin-bottom:20px;border-radius:8px;}
+  .categories label, .wishlist label {display:block;margin-bottom:5px;cursor:pointer;}
+  .price-range input[type=range] {width:100%;}
+  .books-container {flex:1;min-width:300px;}
+  .search-bar {margin-bottom:20px;}
+  .search-bar input {width:100%;padding:10px 15px;font-size:16px;border-radius:8px;border:1px solid #ccc;}
+  .book-grid {display:grid;grid-template-columns:repeat(4,1fr);gap:20px;} /* 4 columns */
+  .book-card {background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1);cursor:pointer;transition:transform 0.3s ease;}
+  .book-card:hover {transform:translateY(-5px);}
+  .book-card img {width:100%;height:200px;object-fit:cover;}
+  .book-info {padding:10px;}
+  .book-info h4 {font-size:16px;margin:0 0 5px;color:#333;}
+  .book-info p {font-size:13px;margin:0;color:#666;}
+  .specs {margin-top:20px;padding:20px;background:#e9f1ff;border-radius:8px;opacity:0;max-height:0;overflow:hidden;transition:all 0.6s ease;}
+  .specs.active {opacity:1;max-height:500px;animation:fadeSlideIn 0.6s forwards;}
+  @keyframes fadeSlideIn {0% {opacity:0;transform:translateY(20px);}100% {opacity:1;transform:translateY(0);}}
+  .pagination {margin-top:20px;text-align:center;}
+  .pagination button {margin:0 5px;padding:5px 10px;border:none;background:#007bff;color:white;border-radius:5px;cursor:pointer;}
+  .pagination button.disabled {background:#ccc;cursor:not-allowed;}
+  @media(max-width:900px){.main{flex-direction:column;}.sidebar{margin-bottom:20px;width:100%;}.book-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
-  <div class="container">
-    <h1>📚 Books Store</h1>
-    <div class="book-grid">
-      <div class="book-card" onclick="showSpecs('book1')">
-        <img src="https://m.media-amazon.com/images/I/81af+MCATTL.jpg" alt="The Great Gatsby">
-        <div class="book-info">
-          <h3>The Great Gatsby</h3>
-          <p>by F. Scott Fitzgerald</p>
-        </div>
-      </div>
-      <div class="book-card" onclick="showSpecs('book2')">
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/b468d093312907.5e6139cf2ab03.png" alt="1984">
-        <div class="book-info">
-          <h3>1984</h3>
-          <p>by George Orwell</p>
-        </div>
-      </div>
-      <div class="book-card" onclick="showSpecs('book3')">
-        <img src="https://cdn2.penguin.com.au/covers/original/9781784870799.jpg" alt="To Kill a Mockingbird">
-        <div class="book-info">
-          <h3>To Kill a Mockingbird</h3>
-          <p>by Harper Lee</p>
-        </div>
-      </div>
+
+<div class="top-bar">
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="page2.html">Page 2</a>
+    <a href="page3.html">Page 3</a>
+  </div>
+  <div>
+    <button>Login</button>
+    <button>Signup</button>
+  </div>
+</div>
+
+<div class="header">
+  <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080" alt="Urban Nest">
+  <h1>Urban Nest</h1>
+</div>
+
+<div class="main">
+
+  <div class="sidebar">
+    <div class="categories">
+      <h3>Categories</h3>
+      <label><input type="checkbox" value="Fantasy" class="genre-filter"> Fantasy</label>
+      <label><input type="checkbox" value="Adventure" class="genre-filter"> Adventure</label>
+      <label><input type="checkbox" value="Science Fiction" class="genre-filter"> Science Fiction</label>
+      <label><input type="checkbox" value="Thriller" class="genre-filter"> Thriller</label>
+      <label><input type="checkbox" value="Romance" class="genre-filter"> Romance</label>
+      <label><input type="checkbox" value="Mystery" class="genre-filter"> Mystery</label>
+      <label><input type="checkbox" value="Drama" class="genre-filter"> Drama</label>
+      <label><input type="checkbox" value="Dystopian" class="genre-filter"> Dystopian</label>
+      <label><input type="checkbox" value="Fiction" class="genre-filter"> Fiction</label>
     </div>
+    <div class="wishlist">
+      <h3>Wishlist</h3>
+      <label><input type="checkbox" id="wishlistToggle"> My Favorites</label>
+    </div>
+    <div class="price-range">
+      <h3>Price Range</h3>
+      <input type="range" min="0" max="1000" value="1000" id="priceRange">
+      <p>Max Price: $<span id="priceValue">1000</span></p>
+    </div>
+  </div>
+
+  <div class="books-container">
+    <div class="search-bar">
+      <input type="text" placeholder="Search for books..." id="searchInput">
+    </div>
+
+    <div class="book-grid" id="bookGrid"></div>
+
+    <div class="pagination" id="pagination"></div>
+
     <div id="specs" class="specs"></div>
   </div>
 
-  <script>
-    const specsData = {
-      book1: `
-        <h3>The Great Gatsby</h3>
-        <p><strong>Author:</strong> F. Scott Fitzgerald</p>
-        <p><strong>Genre:</strong> Fiction, Classic</p>
-        <p><strong>Published:</strong> 1925</p>
-        <p><strong>Synopsis:</strong> A story about the American dream and tragedy.</p>
-      `,
-      book2: `
-        <h3>1984</h3>
-        <p><strong>Author:</strong> George Orwell</p>
-        <p><strong>Genre:</strong> Dystopian, Science Fiction</p>
-        <p><strong>Published:</strong> 1949</p>
-        <p><strong>Synopsis:</strong> A dystopian future under a totalitarian regime.</p>
-      `,
-      book3: `
-        <h3>To Kill a Mockingbird</h3>
-        <p><strong>Author:</strong> Harper Lee</p>
-        <p><strong>Genre:</strong> Fiction, Drama</p>
-        <p><strong>Published:</strong> 1960</p>
-        <p><strong>Synopsis:</strong> A novel about racial injustice in the Deep South.</p>
-      `
-    };
+</div>
 
-    function showSpecs(bookId) {
-      const specsDiv = document.getElementById('specs');
-      specsDiv.classList.remove('active');
-      setTimeout(() => {
-        specsDiv.innerHTML = specsData[bookId];
-        specsDiv.classList.add('active');
-      }, 300);
-    }
-  </script>
+<script>
+const books = [
+  {id:'book1', title:'The Great Gatsby', author:'F. Scott Fitzgerald', img:'https://m.media-amazon.com/images/I/81af+MCATTL.jpg', genre:'Fiction', price:300, synopsis:'A story about the American dream and tragedy.'},
+  {id:'book2', title:'1984', author:'George Orwell', img:'https://mir-s3-cdn-cf.behance.net/project_modules/1400/b468d093312907.5e6139cf2ab03.png', genre:'Dystopian', price:250, synopsis:'A dystopian future under a totalitarian regime.'},
+  {id:'book3', title:'To Kill a Mockingbird', author:'Harper Lee', img:'https://cdn2.penguin.com.au/covers/original/9781784870799.jpg', genre:'Drama', price:350, synopsis:'A novel about racial injustice in the Deep South.'},
+  {id:'book4', title:'Harry Potter', author:'J.K. Rowling', img:'https://4.bp.blogspot.com/-wcnWhKCkyeE/UOKqyVyOzkI/AAAAAAAAAEE/WWy5N3b_krk/s1600/375.jpg', genre:'Fantasy', price:400, synopsis:'A young wizard discovers his magical heritage.'},
+  {id:'book5', title:'The Silent Patient', author:'Alex Michaelides', img:'https://wallpapercave.com/wp/wp4992850.jpg', genre:'Thriller', price:500, synopsis:'A psychological thriller about silence and mystery.'},
+  {id:'book6', title:'The Martian', author:'Andy Weir', img:'https://m.media-amazon.com/images/I/91z+K1cGfRL.jpg', genre:'Science Fiction', price:450, synopsis:'A stranded astronaut fights for survival on Mars.'},
+  {id:'book7', title:'Pride and Prejudice', author:'Jane Austen', img:'https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg', genre:'Romance', price:200, synopsis:'A classic romantic story.'},
+  {id:'book8', title:'Sherlock Holmes', author:'Arthur Conan Doyle', img:'https://images-na.ssl-images-amazon.com/images/I/81Qw1Q6r1QL.jpg', genre:'Mystery', price:300, synopsis:'Detective adventures solving crimes.'},
+  {id:'book9', title:'Dune', author:'Frank Herbert', img:'https://images-na.ssl-images-amazon.com/images/I/91B0nR0b7FL.jpg', genre:'Science Fiction', price:550, synopsis:'Epic sci-fi desert adventure.'},
+  {id:'book10', title:'Twilight', author:'Stephenie Meyer', img:'https://images-na.ssl-images-amazon.com/images/I/81tpC1W9mML.jpg', genre:'Romance', price:350, synopsis:'A vampire romance story.'}
+];
+
+const bookGrid = document.getElementById('bookGrid');
+const specsDiv = document.getElementById('specs');
+const searchInput = document.getElementById('searchInput');
+const priceRange = document.getElementById('priceRange');
+const priceValue = document.getElementById('priceValue');
+const genreFilters = document.querySelectorAll('.genre-filter');
+const pagination = document.getElementById('pagination');
+
+let currentPage = 1;
+const booksPerPage = 8;
+
+priceRange.addEventListener('input', () => {
+  priceValue.textContent = priceRange.value;
+  currentPage = 1;
+  filterBooks();
+});
+searchInput.addEventListener('input', ()=>{ currentPage=1; filterBooks(); });
+genreFilters.forEach(ch => ch.addEventListener('change', ()=>{ currentPage=1; filterBooks(); }));
+
+function showSpecs(bookId) {
+  const book = books.find(b => b.id === bookId);
+  specsDiv.classList.remove('active');
+  setTimeout(() => {
+    specsDiv.innerHTML = `
+      <h3>${book.title}</h3>
+      <p><strong>Author:</strong> ${book.author}</p>
+      <p><strong>Genre:</strong> ${book.genre}</p>
+      <p><strong>Price:</strong> $${book.price}</p>
+      <p><strong>Synopsis:</strong> ${book.synopsis}</p>
+    `;
+    specsDiv.classList.add('active');
+  }, 300);
+}
+
+function filterBooks() {
+  const selectedGenres = Array.from(genreFilters).filter(ch=>ch.checked).map(ch=>ch.value);
+  const maxPrice = priceRange.value;
+  const searchText = searchInput.value.toLowerCase();
+
+  let filtered = books.filter(b => b.price <= maxPrice);
+  if(selectedGenres.length) filtered = filtered.filter(b => selectedGenres.includes(b.genre));
+  if(searchText) filtered = filtered.filter(b => b.title.toLowerCase().includes(searchText));
+
+  renderBooks(filtered);
+}
+
+function renderBooks(filteredBooks) {
+  bookGrid.innerHTML = '';
+  const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+  if(currentPage>totalPages) currentPage = totalPages || 1;
+  const start = (currentPage-1)*booksPerPage;
+  const end = start + booksPerPage;
+  const booksToShow = filteredBooks.slice(start, end);
+
+  booksToShow.forEach(book => {
+    const card = document.createElement('div');
+    card.className = 'book-card';
+    card.onclick = () => showSpecs(book.id);
+    card.innerHTML = `
+      <img src="${book.img}" alt="${book.title}">
+      <div class="book-info">
+        <h4>${book.title}</h4>
+        <p>${book.author}</p>
+      </div>
+    `;
+    bookGrid.appendChild(card);
+  });
+
+  // Pagination buttons
+  pagination.innerHTML = '';
+  for(let i=1;i<=totalPages;i++){
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    if(i===currentPage) btn.classList.add('disabled');
+    btn.onclick = ()=>{ currentPage=i; renderBooks(filteredBooks); };
+    pagination.appendChild(btn);
+  }
+}
+
+// Initial render
+filterBooks();
+</script>
+
 </body>
 </html>
