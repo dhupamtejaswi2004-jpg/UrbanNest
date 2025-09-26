@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Specifications</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .container {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul li {
+    background: #4a90e2;
+    color: white;
+    margin: 10px 0;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(74,144,226,0.3);
+    transition: background 0.3s ease;
+  }
+  ul li:hover {
+    background: #357ABD;
+  }
+  .specs {
+    margin-top: 20px;
+    padding: 20px;
+    background: #e9f1ff;
+    border-radius: 8px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.6s ease;
+  }
+  .specs.active {
+    opacity: 1;
+    max-height: 300px;
+    animation: fadeSlideIn 0.6s forwards;
+  }
+  @keyframes fadeSlideIn {
+    0% {opacity: 0; transform: translateY(20px);}
+    100% {opacity: 1; transform: translateY(0);}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Book Products</h1>
+    <ul id="book-list">
+      <li onclick="showSpecs('book1')">The Great Gatsby</li>
+      <li onclick="showSpecs('book2')">1984</li>
+      <li onclick="showSpecs('book3')">To Kill a Mockingbird</li>
+    </ul>
+    <div id="specs" class="specs"></div>
+  </div>
+  <script>
+    const specsData = {
+      book1: `
+        <h3>The Great Gatsby</h3>
+        <p><strong>Author:</strong> F. Scott Fitzgerald</p>
+        <p><strong>Genre:</strong> Fiction, Classic</p>
+        <p><strong>Published:</strong> 1925</p>
+        <p><strong>Synopsis:</strong> A story about the American dream and tragedy.</p>
+      `,
+      book2: `
+        <h3>1984</h3>
+        <p><strong>Author:</strong> George Orwell</p>
+        <p><strong>Genre:</strong> Dystopian, Science Fiction</p>
+        <p><strong>Published:</strong> 1949</p>
+        <p><strong>Synopsis:</strong> A dystopian future under a totalitarian regime.</p>
+      `,
+      book3: `
+        <h3>To Kill a Mockingbird</h3>
+        <p><strong>Author:</strong> Harper Lee</p>
+        <p><strong>Genre:</strong> Fiction, Drama</p>
+        <p><strong>Published:</strong> 1960</p>
+        <p><strong>Synopsis:</strong> A novel about racial injustice in the Deep South.</p>
+      `
+    };
+
+    function showSpecs(bookId) {
+      const specsDiv = document.getElementById('specs');
+      specsDiv.classList.remove('active');
+      // Delay to allow animation reset
+      setTimeout(() => {
+        specsDiv.innerHTML = specsData[bookId];
+        specsDiv.classList.add('active');
+      }, 300);
+    }
+  </script>
+</body>
+</html>
