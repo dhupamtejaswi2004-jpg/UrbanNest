@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Urban Nest Books - Home</title>
-<style>
-  body {margin:0;font-family:Arial,sans-serif;background:#f0f0f0;}
-  .top-bar {display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-  .top-bar .nav-links a {margin-left:15px;text-decoration:none;color:#007bff;font-weight:bold;}
-  .top-bar button {margin-left:15px;padding:8px 16px;border:none;background:#007bff;color:white;border-radius:5px;cursor:pointer;}
-  .header {position:relative;text-align:center;color:white;}
-  .header img {width:100%;height:250px;object-fit:cover;filter:brightness(60%);}
-  .header h1 {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;margin:0;}
-  .main {display:flex;padding:20px 30px;flex-wrap:wrap;}
-  .sidebar {width:220px;margin-right:30px;flex-shrink:0;}
-  .sidebar h3 {margin-top:0;}
-  .categories, .wishlist, .price-range {background:#fff;padding:15px;margin-bottom:20px;border-radius:8px;}
-  .categories label, .wishlist label {display:block;margin-bottom:5px;cursor:pointer;}
-  .price-range input[type=range] {width:100%;}
-  .books-container {flex:1;min-width:300px;}
-  .search-bar {margin-bottom:20px;}
-  .search-bar input {width:100%;padding:10px 15px;font-size:16px;border-radius:8px;border:1px solid #ccc;}
-  .book-grid {display:grid;grid-template-columns:repeat(4,1fr);gap:20px;} /* 4 columns */
-  .book-card {background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1);cursor:pointer;transition:transform 0.3s ease;}
-  .book-card:hover {transform:translateY(-5px);}
-  .book-card img {width:100%;height:200px;object-fit:cover;}
-  .book-info {padding:10px;}
-  .book-info h4 {font-size:16px;margin:0 0 5px;color:#333;}
-  .book-info p {font-size:13px;margin:0;color:#666;}
-  .specs {margin-top:20px;padding:20px;background:#e9f1ff;border-radius:8px;opacity:0;max-height:0;overflow:hidden;transition:all 0.6s ease;}
-  .specs.active {opacity:1;max-height:500px;animation:fadeSlideIn 0.6s forwards;}
-  @keyframes fadeSlideIn {0% {opacity:0;transform:translateY(20px);}100% {opacity:1;transform:translateY(0);}}
-  .pagination {margin-top:20px;text-align:center;}
-  .pagination button {margin:0 5px;padding:5px 10px;border:none;background:#007bff;color:white;border-radius:5px;cursor:pointer;}
-  .pagination button.disabled {background:#ccc;cursor:not-allowed;}
-  @media(max-width:900px){.main{flex-direction:column;}.sidebar{margin-bottom:20px;width:100%;}.book-grid{grid-template-columns:repeat(2,1fr);}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Nest Books - Home</title>
+  <style>
+    body {margin:0;font-family:Arial,sans-serif;background:#f0f0f0;}
+    .top-bar {display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+    .top-bar .nav-links a {margin-left:15px;text-decoration:none;color:#007bff;font-weight:bold;}
+    .top-bar button {margin-left:15px;padding:8px 16px;border:none;background:#007bff;color:white;border-radius:5px;cursor:pointer;}
+    .header {position:relative;text-align:center;color:white;}
+    .header img {width:100%;height:250px;object-fit:cover;filter:brightness(60%);}
+    .header h1 {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;margin:0;}
+    .main {display:flex;padding:20px 30px;flex-wrap:wrap;}
+    .sidebar {width:220px;margin-right:30px;flex-shrink:0;}
+    .sidebar h3 {margin-top:0;}
+    .categories, .wishlist, .price-range {background:#fff;padding:15px;margin-bottom:20px;border-radius:8px;}
+    .categories label, .wishlist label {display:block;margin-bottom:5px;cursor:pointer;}
+    .price-range input[type=range] {width:100%;}
+    .books-container {flex:1;min-width:300px;}
+    .search-bar {margin-bottom:20px;}
+    .search-bar input {width:100%;padding:10px 15px;font-size:16px;border-radius:8px;border:1px solid #ccc;}
+    .book-grid {display:grid;grid-template-columns:repeat(4,1fr);gap:20px;} /* 4 columns */
+    .book-card {background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1);cursor:pointer;transition:transform 0.3s ease;}
+    .book-card:hover {transform:translateY(-5px);}
+    .book-card img {width:100%;height:200px;object-fit:cover;}
+    .book-info {padding:10px;}
+    .book-info h4 {font-size:16px;margin:0 0 5px;color:#333;}
+    .book-info p {font-size:13px;margin:0;color:#666;}
+    .book-info button {margin-top:8px;padding:5px 10px;border:none;background:#28a745;color:white;border-radius:5px;cursor:pointer;font-size:12px;}
+    .book-info button:hover {background:#218838;}
+    .specs {margin-top:20px;padding:20px;background:#e9f1ff;border-radius:8px;opacity:0;max-height:0;overflow:hidden;transition:all 0.6s ease;}
+    .specs.active {opacity:1;max-height:500px;animation:fadeSlideIn 0.6s forwards;}
+    @keyframes fadeSlideIn {0% {opacity:0;transform:translateY(20px);}100% {opacity:1;transform:translateY(0);}}
+    .pagination {margin-top:20px;text-align:center;}
+    .pagination button {margin:0 5px;padding:5px 10px;border:none;background:#007bff;color:white;border-radius:5px;cursor:pointer;}
+    .pagination button.disabled {background:#ccc;cursor:not-allowed;}
+    @media(max-width:900px){.main{flex-direction:column;}.sidebar{margin-bottom:20px;width:100%;}.book-grid{grid-template-columns:repeat(2,1fr);}}
+
+    /* Cart style */
+    .cart {position:relative;margin-left:20px;font-size:18px;font-weight:bold;color:#007bff;cursor:pointer;}
+    .cart span {background:#ff4757;color:white;border-radius:50%;padding:3px 7px;font-size:14px;position:absolute;top:-10px;right:-15px;}
+  </style>
 </head>
 <body>
 
 <div class="top-bar">
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="page2.html">Page 2</a>
-    <a href="page3.html">Page 3</a>
   </div>
   <div>
+    <div class="cart">🛒 <span id="cartCount">0</span> items | $<span id="cartTotal">0</span></div>
     <button>Login</button>
     <button>Signup</button>
   </div>
@@ -89,11 +94,11 @@
 
     <div class="book-grid" id="bookGrid"></div>
 
+    <!-- ✅ Pagination is placed AFTER the books grid -->
     <div class="pagination" id="pagination"></div>
 
     <div id="specs" class="specs"></div>
   </div>
-
 </div>
 
 <script>
@@ -101,13 +106,13 @@ const books = [
   {id:'book1', title:'The Great Gatsby', author:'F. Scott Fitzgerald', img:'https://m.media-amazon.com/images/I/81af+MCATTL.jpg', genre:'Fiction', price:300, synopsis:'A story about the American dream and tragedy.'},
   {id:'book2', title:'1984', author:'George Orwell', img:'https://mir-s3-cdn-cf.behance.net/project_modules/1400/b468d093312907.5e6139cf2ab03.png', genre:'Dystopian', price:250, synopsis:'A dystopian future under a totalitarian regime.'},
   {id:'book3', title:'To Kill a Mockingbird', author:'Harper Lee', img:'https://cdn2.penguin.com.au/covers/original/9781784870799.jpg', genre:'Drama', price:350, synopsis:'A novel about racial injustice in the Deep South.'},
-  {id:'book4', title:'Harry Potter', author:'J.K. Rowling', img:'https://4.bp.blogspot.com/-wcnWhKCkyeE/UOKqyVyOzkI/AAAAAAAAAEE/WWy5N3b_krk/s1600/375.jpg', genre:'Fantasy', price:400, synopsis:'A young wizard discovers his magical heritage.'},
-  {id:'book5', title:'The Silent Patient', author:'Alex Michaelides', img:'https://wallpapercave.com/wp/wp4992850.jpg', genre:'Thriller', price:500, synopsis:'A psychological thriller about silence and mystery.'},
-  {id:'book6', title:'The Martian', author:'Andy Weir', img:'https://m.media-amazon.com/images/I/91z+K1cGfRL.jpg', genre:'Science Fiction', price:450, synopsis:'A stranded astronaut fights for survival on Mars.'},
-  {id:'book7', title:'Pride and Prejudice', author:'Jane Austen', img:'https://images-na.ssl-images-amazon.com/images/I/81OthjkJBuL.jpg', genre:'Romance', price:200, synopsis:'A classic romantic story.'},
-  {id:'book8', title:'Sherlock Holmes', author:'Arthur Conan Doyle', img:'https://images-na.ssl-images-amazon.com/images/I/81Qw1Q6r1QL.jpg', genre:'Mystery', price:300, synopsis:'Detective adventures solving crimes.'},
-  {id:'book9', title:'Dune', author:'Frank Herbert', img:'https://images-na.ssl-images-amazon.com/images/I/91B0nR0b7FL.jpg', genre:'Science Fiction', price:550, synopsis:'Epic sci-fi desert adventure.'},
-  {id:'book10', title:'Twilight', author:'Stephenie Meyer', img:'https://images-na.ssl-images-amazon.com/images/I/81tpC1W9mML.jpg', genre:'Romance', price:350, synopsis:'A vampire romance story.'}
+  {id:'book4', title:'Harry Potter', author:'J.K. Rowling', img:'https://i5.walmartimages.com/seo/Harry-Potter-Harry-Potter-and-the-Prisoner-of-Azkaban-Harry-Potter-Book-3-Minalima-Edition-Hardcover-9781338815283_5e00256d-a3f9-4b5f-bf0a-24b11f87b1a6.94884053afaf1c426efcdd52f979c14a.jpeg', genre:'Fantasy', price:400, synopsis:'A young wizard discovers his magical heritage.'},
+  {id:'book5', title:'The Silent Patient', author:'Alex Michaelides', img:'https://cdn.shopify.com/s/files/1/1192/7528/products/the-silent-patient-19556356063385_1600x.jpg?v=1604950483', genre:'Thriller', price:500, synopsis:'A psychological thriller about silence and mystery.'},
+  {id:'book6', title:'The Martian', author:'Andy Weir', img:'https://bookthoughtsfrombed.com/wp-content/uploads/2019/05/the-martian.jpg?w=640', genre:'Science Fiction', price:450, synopsis:'A stranded astronaut fights for survival on Mars.'},
+  {id:'book7', title:'Pride and Prejudice', author:'Jane Austen', img:'https://flxt.tmsimg.com/assets/p16161151_b_v10_aa.jpg', genre:'Romance', price:200, synopsis:'A classic romantic story.'},
+  {id:'book8', title:'Sherlock Holmes', author:'Arthur Conan Doyle', img:'https://m.media-amazon.com/images/M/MV5BMmQ0MmI3YjktNDlkNi00YTBkLTk5OGItNjhkNmM1NGI1M2IwXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg', genre:'Mystery', price:300, synopsis:'Detective adventures solving crimes.'},
+  {id:'book9', title:'Dune', author:'Frank Herbert', img:'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg', genre:'Science Fiction', price:550, synopsis:'Epic sci-fi desert adventure.'},
+  {id:'book10', title:'Twilight', author:'Stephenie Meyer', img:'https://m.media-amazon.com/images/I/71zRrAtb42L.jpg', genre:'Romance', price:350, synopsis:'A vampire romance story.'}
 ];
 
 const bookGrid = document.getElementById('bookGrid');
@@ -117,17 +122,27 @@ const priceRange = document.getElementById('priceRange');
 const priceValue = document.getElementById('priceValue');
 const genreFilters = document.querySelectorAll('.genre-filter');
 const pagination = document.getElementById('pagination');
+const cartTotal = document.getElementById('cartTotal');
+const cartCount = document.getElementById('cartCount');
 
 let currentPage = 1;
 const booksPerPage = 8;
+let cartPrice = 0;
+let cartItems = 0;
 
 priceRange.addEventListener('input', () => {
   priceValue.textContent = priceRange.value;
   currentPage = 1;
   filterBooks();
 });
-searchInput.addEventListener('input', ()=>{ currentPage=1; filterBooks(); });
-genreFilters.forEach(ch => ch.addEventListener('change', ()=>{ currentPage=1; filterBooks(); }));
+searchInput.addEventListener('input', ()=>{
+  currentPage=1;
+  filterBooks();
+});
+genreFilters.forEach(ch => ch.addEventListener('change', ()=>{
+  currentPage=1;
+  filterBooks();
+}));
 
 function showSpecs(bookId) {
   const book = books.find(b => b.id === bookId);
@@ -142,6 +157,13 @@ function showSpecs(bookId) {
     `;
     specsDiv.classList.add('active');
   }, 300);
+}
+
+function addToCart(price){
+  cartPrice += price;
+  cartItems++;
+  cartTotal.textContent = cartPrice;
+  cartCount.textContent = cartItems;
 }
 
 function filterBooks() {
@@ -167,18 +189,19 @@ function renderBooks(filteredBooks) {
   booksToShow.forEach(book => {
     const card = document.createElement('div');
     card.className = 'book-card';
-    card.onclick = () => showSpecs(book.id);
     card.innerHTML = `
-      <img src="${book.img}" alt="${book.title}">
+      <img src="${book.img}" alt="${book.title}" onclick="showSpecs('${book.id}')">
       <div class="book-info">
         <h4>${book.title}</h4>
         <p>${book.author}</p>
+        <p><strong>$${book.price}</strong></p>
+        <button onclick="addToCart(${book.price})">Add to Cart</button>
       </div>
     `;
     bookGrid.appendChild(card);
   });
 
-  // Pagination buttons
+  // ✅ Pagination appears under books grid
   pagination.innerHTML = '';
   for(let i=1;i<=totalPages;i++){
     const btn = document.createElement('button');
